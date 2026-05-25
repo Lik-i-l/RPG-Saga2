@@ -42,6 +42,7 @@ public abstract class Hero
 
     public bool HasImmunity(ElementType element)
     {
+        if (element == ElementType.None) return false;
         return Immunities.HasFlag(element);
     }
 
