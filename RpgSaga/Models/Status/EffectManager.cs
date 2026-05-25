@@ -1,5 +1,6 @@
 using RpgSaga.Models.Effects;
 using RpgSaga.Models.Enums;
+using RpgSaga.Models.Heroes;
 
 namespace RpgSaga.Models.Status;
 
