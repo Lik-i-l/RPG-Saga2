@@ -1,13 +1,25 @@
 using RpgSaga.Models.Enums;
+using RpgSaga.Models.Heroes;
 
 namespace RpgSaga.Models.Effects;
 
-public interface IEffect
+public class IceEffect : IEffect
 {
-    EffectType Type { get; }
-    int RemainingTurns { get; set; }
-    int DamagePerTurn { get; }
-    ElementType Element { get; }
-    void Apply(Hero target);
-    IEffect Clone();
+    public EffectType Type => EffectType.Ice;
+    public int RemainingTurns { get; set; }
+    public int DamagePerTurn => 3;
+    public ElementType Element => ElementType.Ice;
+
+    public IceEffect(int duration = 3)
+    {
+        RemainingTurns = duration;
+    }
+
+    public void Apply(Hero target)
+    {
+        target.TakeDamage(DamagePerTurn, Element);
+        RemainingTurns--;
+    }
+
+    public IEffect Clone() => new IceEffect(RemainingTurns);
 }
