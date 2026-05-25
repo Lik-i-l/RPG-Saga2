@@ -1,4 +1,5 @@
 using RpgSaga.Services;
+using RpgSaga.Models.Enums;
 
 Console.WriteLine("=== RPG SAGA 2 ===\n");
 Console.WriteLine("1. Случайный турнир");
@@ -39,10 +40,10 @@ else if (choice == "2")
     var classChoice = Console.ReadLine();
     builder.SetType(classChoice switch
     {
-        "1" => Models.Enums.HeroType.Knight,
-        "2" => Models.Enums.HeroType.Archer,
-        "3" => Models.Enums.HeroType.Mage,
-        _ => Models.Enums.HeroType.Knight
+        "1" => HeroType.Knight,
+        "2" => HeroType.Archer,
+        "3" => HeroType.Mage,
+        _ => HeroType.Knight
     });
     
     Console.Write("Введите здоровье (50-130): ");
@@ -55,7 +56,6 @@ else if (choice == "2")
     
     Console.WriteLine($"\nВаш герой: {hero.Name} ({hero.GetClassType()}) - Здоровье: {hero.Health}, Сила: {hero.Strength}");
     
-    // Создаём противников
     var opponents = factory.CreateRandomHeroes(2);
     
     Console.WriteLine("\n=== ПРОТИВНИКИ ===");
@@ -64,14 +64,14 @@ else if (choice == "2")
         Console.WriteLine($"{opp.Name} ({opp.GetClassType()}) - Здоровье: {opp.Health}, Сила: {opp.Strength}");
     }
     
-    var allHeroes = new List<Models.Heroes.Hero> { hero };
+    var allHeroes = new List<Hero> { hero };
     allHeroes.AddRange(opponents);
     
     var winner = battleManager.Tournament(allHeroes);
     Console.WriteLine($"\nРезультат: {(winner == hero ? "ВЫ ПОБЕДИЛИ!" : "ВЫ ПРОИГРАЛИ...")}");
 }
 
-Console.WriteLine("\n=== ПОЛНЫЕ ЛОГИ ===");
+Console.WriteLine("\n=== ЛОГИ БИТВЫ ===");
 foreach (var log in logger.GetLogs())
 {
     Console.WriteLine(log);
