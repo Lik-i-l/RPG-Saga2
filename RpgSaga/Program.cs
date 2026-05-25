@@ -1,5 +1,6 @@
 using RpgSaga.Services;
 using RpgSaga.Models.Enums;
+using RpgSaga.Models.Heroes;
 
 Console.WriteLine("=== RPG SAGA 2 ===\n");
 Console.WriteLine("1. Случайный турнир");
@@ -64,7 +65,7 @@ else if (choice == "2")
         Console.WriteLine($"{opp.Name} ({opp.GetClassType()}) - Здоровье: {opp.Health}, Сила: {opp.Strength}");
     }
     
-    var allHeroes = new List<Hero> { hero };
+    var allHeroes = new List<RpgSaga.Models.Heroes.Hero> { hero };
     allHeroes.AddRange(opponents);
     
     var winner = battleManager.Tournament(allHeroes);
