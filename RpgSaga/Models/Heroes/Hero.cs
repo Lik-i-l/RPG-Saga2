@@ -38,7 +38,6 @@ public abstract class Hero
     public void Heal(int amount)
     {
         Health += amount;
-        // Максимальное здоровье не ограничиваем для простоты
     }
 
     public bool HasImmunity(ElementType element)
