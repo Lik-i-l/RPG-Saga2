@@ -1,4 +1,4 @@
-name: .NET Build and Test
+name: .NET Build, Test and Run
 
 on:
   push:
@@ -25,3 +25,8 @@ jobs:
     
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
+    
+    - name: Run RPG Saga (Tournament with 6 players)
+      run: |
+        cd RpgSaga
+        printf "1\n6\n" | dotnet run
