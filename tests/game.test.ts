@@ -102,7 +102,8 @@ describe('Abilities', () => {
         const target = new Knight('Враг', 100, 10);
         const attack = new RetributionStrike();
         attack.execute(knight, target);
-        expect(target.health).toBe(100 - (20 + Math.floor(20 * 0.3)));
+        const expectedDamage = 20 + Math.floor(20 * 0.3);
+        expect(target.health).toBe(100 - expectedDamage);
     });
 
     test('FireArrows adds burning effect', () => {
