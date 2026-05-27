@@ -250,7 +250,7 @@ export abstract class Hero {
     private _health: number;
     private _strength: number;
     private _effectManager: EffectManager = new EffectManager();
-    protected immunities: ElementType = ElementType.None;
+    protected immunities: string[] = [];
 
     constructor(name: string, health: number, strength: number) {
         this._name = name;
@@ -278,8 +278,7 @@ export abstract class Hero {
     }
 
     hasImmunity(element: ElementType): boolean {
-        if (element === ElementType.None) return false;
-        return (this.immunities & element) === element;
+        return this.immunities.includes(element);
     }
 
     applyEffects(): void {
@@ -356,7 +355,7 @@ export class Mage extends Hero {
 
     constructor(name: string, health: number, strength: number) {
         super(name, health, strength);
-        this.immunities = ElementType.Frost;
+        this.immunities = [ElementType.Frost];
     }
 
     getRandomAbility(): IAbility {
